@@ -84,7 +84,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl:
-            "https://github.com/facebook/docusaurus/edit/master/website/",
+            "https://github.com/ysfaran/react-fluent-form-docs/edit/master/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
