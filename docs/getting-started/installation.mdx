@@ -1,0 +1,43 @@
+---
+id: installation
+title: Installation & Prerequisites
+sidebar_label: Installation & Prerequisites
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+This library supports react hooks only, so react `v16.8` or greater is required.  
+`react-fluent-form` already **comes with typings**, so no other package is needed to run this library with typescript.
+
+```bash
+npm i react-fluent-form
+```
+
+## Optional Dependencies
+
+If you want to use [`yup`](https://www.npmjs.com/package/yup) for validation you need to install it manually.
+
+<Tabs
+  groupId="script-language"
+  defaultValue="js"
+  values={[
+    { label: "JavaScript", value: "js", },
+    { label: "TypeScript", value: "ts", },
+  ]
+}>
+<TabItem value="js">
+
+```bash
+npm i yup
+```
+
+</TabItem>
+<TabItem value="ts">
+
+```bash
+npm i yup @types/yup
+```
+
+</TabItem>
+</Tabs>

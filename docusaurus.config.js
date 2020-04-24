@@ -1,94 +1,93 @@
 module.exports = {
-  title: 'My Site',
-  tagline: 'The tagline of my site',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
-  favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  title: "react-fluent-form",
+  tagline: "A Form Library to Ease Developer Lifes",
+  url: "https://ysfaran.github.io",
+  baseUrl: "/react-fluent-form-docs/",
+  favicon: "img/favicon.ico",
+  organizationName: "ysfaran", // Usually your GitHub org/user name.
+  projectName: "react-fluent-form-docs", // Usually your repo name.
   themeConfig: {
+    prism: {
+      theme: require("prism-react-renderer/themes/nightOwl"),
+    },
     navbar: {
-      title: 'My Site',
+      title: "react-fluent-form",
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: "react-fluent-form Logo",
+        src: "img/react-fluent-form-logo.svg",
       },
       links: [
         {
-          to: 'docs/doc1',
-          activeBasePath: 'docs',
-          label: 'Docs',
-          position: 'left',
+          to: "docs/getting-started/introduction",
+          activeBasePath: "docs",
+          label: "Docs",
+          position: "left",
         },
-        {to: 'blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
-          position: 'right',
+          href: "https://github.com/ysfaran/react-fluent-form",
+          label: "GitHub",
+          position: "right",
         },
       ],
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       links: [
         {
-          title: 'Docs',
+          title: "Docs",
           items: [
             {
-              label: 'Style Guide',
-              to: 'docs/doc1',
+              label: "Getting Started",
+              to: "docs/getting-started/introduction",
             },
             {
-              label: 'Second Doc',
-              to: 'docs/doc2',
+              label: "Advanced",
+              to: "docs/advanced/form-array",
+            },
+            {
+              label: "API",
+              to: "docs/api/use-fluent-form",
             },
           ],
         },
         {
-          title: 'Community',
+          title: "Community",
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: "GitHub Issues",
+              href: "https://github.com/ysfaran/react-fluent-form/issues",
             },
           ],
         },
         {
-          title: 'Social',
+          title: "Social",
           items: [
             {
-              label: 'Blog',
-              to: 'blog',
+              label: "Introductional Blog",
+              to:
+                "https://dev.to/ysfaran/react-fluent-form-how-to-write-forms-with-validation-in-few-steps-56ho",
             },
             {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              label: "GitHub",
+              href: "https://github.com/ysfaran/react-fluent-form",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} react-fluent-form, Inc. Built with Docusaurus.`,
     },
   },
   presets: [
     [
-      '@docusaurus/preset-classic',
+      "@docusaurus/preset-classic",
       {
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: require.resolve("./sidebars.js"),
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+            "https://github.com/facebook/docusaurus/edit/master/website/",
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
       },
     ],
