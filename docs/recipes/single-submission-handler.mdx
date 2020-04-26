@@ -1,0 +1,110 @@
+---
+id: single-submission-handler
+title: Single Submission Handler
+sidebar_label: Single Submission Handler
+---
+
+import Highlight from "../../src/mdx-components/Highlight";
+
+Sometimes it's better to seperate your forms, for example if:
+
+- they deal with different concerns
+- it should be possible to save them independently
+- they are placed inside a wizard
+
+In some cases you might have to connect them back together in order to submit all forms at once.
+As an example you could have multiple forms which can be saved independently and then also a <Highlight>Save All</Highlight> button, to trigger submission for all forms.
+
+## useMergedSubmit
+
+`useMergedSubmit` is a custom hook, that returns a function which is similar to the [`handleSubmit`](../api/use-fluent-form#handlesubmit) returned by `useFluentForm`.
+It receives any amount of fluent form instances as paramater:
+
+```ts
+import { useCallback, useRef } from "react";
+import { UseFluentForm } from "react-fluent-form";
+
+export function useMergedSubmit(...fluentForms: UseFluentForm<any>[]) {
+  const successCallbackRef = useRef<Function>(() => undefined);
+  const failureCallbackRef = useRef<Function>(() => undefined);
+
+  const handleSubmit = useCallback(
+    (
+      success: Function = () => undefined,
+      failure: Function = () => undefined
+    ) => {
+      successCallbackRef.current = success;
+      failureCallbackRef.current = failure;
+
+      return async (e: any) => {
+        if (typeof e === "object") {
+          if (typeof e.preventDefault === "function") {
+            e.preventDefault();
+          }
+          if (typeof e.stopPropagation === "function") {
+            e.stopPropagation();
+          }
+        }
+
+        const submitPromises: Promise<boolean>[] = [];
+
+        for (let i = 0; i < fluentForms.length; i++) {
+          const currentForm = fluentForms[i];
+          const currentPromise = new Promise<boolean>((resolve) => {
+            currentForm.handleSubmit(
+              () => resolve(true),
+              () => resolve(false)
+            )(e);
+          });
+          submitPromises.push(currentPromise);
+        }
+
+        const results: boolean[] = await Promise.all(submitPromises).catch(() =>
+          failure()
+        );
+
+        const successful = results.every((results) => results);
+
+        successful
+          ? successCallbackRef.current()
+          : failureCallbackRef.current();
+      };
+    },
+    [fluentForms]
+  );
+  return handleSubmit;
+}
+```
+
+## Example
+
+Following example contains two seperate forms: one for personal details and another for address details.
+The `handleSubmit` function returned by `useMergedSubmit` can be called with with a success/failure callback and triggered via e.g. a button click:
+
+```jsx
+const personalForm = useFluentForm(personalConfig);
+const addressForm = useFluentForm(addressConfig);
+
+const handleSubmit = useMergedSubmit(
+  personalForm,
+  addressForm
+  /* add any amount of forms */
+);
+
+// will be called if there is no error in every form
+const handleSubmitSuccess = () => {
+  console.log(personalForm.values);
+  console.log(addressForm.values);
+};
+
+// will be called if there is at least one error in any form
+const handleSubmitFailure = () => {
+  console.log(personalForm.errors);
+  console.log(addressForm.errors);
+};
+
+return (
+  // render forms ...
+  <button onClick={handleSubmit(handleSubmitSuccess, handleSubmitFailure)} />
+);
+```
