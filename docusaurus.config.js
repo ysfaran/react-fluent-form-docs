@@ -7,6 +7,7 @@ module.exports = {
   organizationName: "ysfaran", // Usually your GitHub org/user name.
   projectName: "react-fluent-form-docs", // Usually your repo name.
   themeConfig: {
+    image: "img/react-fluent-form-showcase.png",
     prism: {
       theme: require("prism-react-renderer/themes/nightOwl"),
     },

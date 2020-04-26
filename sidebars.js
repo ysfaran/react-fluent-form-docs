@@ -8,6 +8,11 @@ module.exports = {
       "getting-started/customization",
     ],
     Advanced: ["advanced/form-array"],
+    Recipes: [
+      "recipes/what-are-recipes",
+      "recipes/single-submission-handler",
+      "recipes/grouping-field-data",
+    ],
     API: [
       "api/add-field",
       "api/create-form",
