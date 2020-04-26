@@ -12,7 +12,7 @@ const features = [
     imageUrl: "img/react-fluent-form-fusion.svg",
     description: (
       <>
-        Stop worriyng about state handling and focus on configuration. An API
+        Stop worrying about state handling and focus on configuration. An API
         designed to fluently read and write configuration for forms.
       </>
     ),
