@@ -48,7 +48,7 @@ const { touched, validity, errors } = useFluentForm(formConfig);
 
 In order to properly display error messages (and maybe also success messages) properties `touched`, `validity` and `errors` can be used. To handle validation failures on submission a callback can be provided as second argument of `handleSubmit`:
 
-```jsx
+```jsx {20-22,27-28}
 function RegistrationForm() {
   const {
     values,
@@ -77,6 +77,31 @@ function RegistrationForm() {
         <input {...fields.password} />
         {/* validity.password stays undefined until the submission (validateOnSubmitOnly) */}
         {touched.password && validity.password === false && <div>{errors.password[0]}</div>}
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+If [default validation triggers](../api/form-config#validateaftertouchonchange) are used, it's enough to **only** check  the `errors` object:
+
+```jsx {10,15}
+function RegistrationForm() {
+
+  // ...
+
+  return (
+    <form onSubmit={handleSubmit(handleSubmitSuccess, handleSubmitFailure)}>
+      <label>
+        Username*:
+        <input {...fields.username} />
+        {errors.username && <div>{errors.username[0]}</div>}
+      </label>
+      <label>
+        Password*:
+        <input {...fields.password} />
+        {errors.password && <div>{errors.password[0]}</div>}
       </label>
       <button type="submit">Submit</button>
     </form>
