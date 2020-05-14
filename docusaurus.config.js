@@ -1,8 +1,8 @@
 module.exports = {
   title: "react-fluent-form",
   tagline: "A Form Library to Ease Developer Lifes",
-  url: "https://ysfaran.github.io",
-  baseUrl: "/react-fluent-form-docs/",
+  url: "https://react-fluent-form.com/",
+  baseUrl: "/",
   favicon: "img/favicon.ico",
   organizationName: "ysfaran", // Usually your GitHub org/user name.
   projectName: "react-fluent-form-docs", // Usually your repo name.
