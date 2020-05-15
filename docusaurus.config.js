@@ -1,7 +1,7 @@
 module.exports = {
   title: "react-fluent-form",
   tagline: "A Form Library to Ease Developer Lifes",
-  url: "https://react-fluent-form.com/",
+  url: "https://elegant-ride-60014b.netlify.app",
   baseUrl: "/",
   favicon: "img/favicon.ico",
   organizationName: "ysfaran", // Usually your GitHub org/user name.
