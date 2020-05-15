@@ -73,7 +73,7 @@ interface UserFormModel {
 }
 
 const userConfig = createConfig<UserFormModel>({
-  name: field.string(),
+  name: field.text(),
   password: field.password()
 })
 
