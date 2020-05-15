@@ -133,7 +133,7 @@ If you want to update your context as soon as your context values have changed, 
 const { setContext } = useFluentForm(formConfing);
 
 useEffect(() => {
-  setContext({ context: coordinates });
+  setContext({ ...coordinates });
 }, [coordinates]);
 ```
 
@@ -149,11 +149,11 @@ formConfig.validateOnContextChange();
 
 ```jsx
 formConfig.withValidation({
-  username: yup.string().when("$context.x", {
+  username: yup.string().when("$x", {
     is: 0,
     then: yup.string().required()
   }),
-  password: (value, values, { context }) => {
+  password: (value, values, context) => {
     if (context.x < context.y) return "error";
   }
 });
